@@ -1,0 +1,13 @@
+.fit-cover {
+  object-fit: cover;
+}
+
+h1 {
+  text-align: center;
+  padding: 0px 10px;
+}
+
+div {
+  justify-content: space-between;
+}
+

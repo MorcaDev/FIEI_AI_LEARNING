@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'qa_vark.css' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <title>Cuestionario VARK</title>
+</head>
+<body>
+  <h2 style="text-align:center;">Cuestionario VARK de Estilo de Aprendizaje</h2>
+  <span><br></span>
+  <form method="POST" action="{% url 'qa_vark' %}">
+    {% csrf_token %}
+    <p><strong>Selecciona la opción que más se asemeje a tu preferencia en cada situación:</strong></p><br>
+
+    <label>1. Cuando aprendo algo nuevo, prefiero:</label><br>
+    <input type="radio" name="q1" value="Visual" required> Ver diagramas, mapas o gráficos<br>
+    <input type="radio" name="q1" value="Auditivo"> Escuchar explicaciones o grabaciones<br>
+    <input type="radio" name="q1" value="Lectura"> Leer textos o manuales<br>
+    <input type="radio" name="q1" value="Kinestésico"> Hacerlo yo mismo o usar objetos<br><br>
+
+    <label>2. En una clase, aprendo mejor cuando:</label><br>
+    <input type="radio" name="q2" value="Visual" required> Usan esquemas y presentaciones visuales<br>
+    <input type="radio" name="q2" value="Auditivo"> El profesor explica con claridad oralmente<br>
+    <input type="radio" name="q2" value="Lectura"> Me dan materiales para leer<br>
+    <input type="radio" name="q2" value="Kinestésico"> Participamos en actividades prácticas<br><br>
+
+    <label>3. Cuando tengo que recordar algo, lo hago mejor si:</label><br>
+    <input type="radio" name="q3" value="Visual" required> Veo una imagen mental<br>
+    <input type="radio" name="q3" value="Auditivo"> Recuerdo lo que escuché<br>
+    <input type="radio" name="q3" value="Lectura"> Recuerdo lo que leí<br>
+    <input type="radio" name="q3" value="Kinestésico"> Recuerdo lo que hice<br><br>
+
+    <label>4. Para estudiar prefiero:</label><br>
+    <input type="radio" name="q4" value="Visual" required> Dibujar mapas conceptuales<br>
+    <input type="radio" name="q4" value="Auditivo"> Escuchar grabaciones de clase<br>
+    <input type="radio" name="q4" value="Lectura"> Hacer resúmenes escritos<br>
+    <input type="radio" name="q4" value="Kinestésico"> Realizar experimentos o simulaciones<br><br>
+
+    <button type="submit">Enviar cuestionario</button>
+  </form>
+</body>
+</html>

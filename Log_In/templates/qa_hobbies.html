@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'qa_hobbies.css' %}">
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  <title>Formulario de Perfil</title>
+</head>
+<body>
+  <h2 style="text-align:center;">Completa tu perfil <br/>Selecciona tu(s) hobby(ies) favoritos</h2>
+  <span><br></span>
+  <form method="post">
+    {% csrf_token %}
+
+    <label for="hobbies">Hobbies o intereses:</label>
+    <select id="hobbies" name="hobbies" multiple required>
+        <option value="Caminata">Caminata</option>
+        <option value="Manualidades">Manualidades</option>
+        <option value="Lectura">Lectura</option>
+        <option value="Fotografía">Fotografía</option>
+        <option value="Baile">Baile</option>
+        <option value="Cocina">Cocina</option>
+        <option value="Videojuegos">Videojuegos</option>
+        <option value="Dibujo">Dibujo</option>
+        <option value="Música">Música</option>
+        <option value="Fútbol">Fútbol</option>
+    </select>
+
+    <button type="submit">Guardar perfil</button>
+  </form>
+</body>
+</html>
