@@ -119,7 +119,13 @@
                                                 <div><button class="btn btn-primary w-100 d-block" type="submit">Send</button></div>
                                             </form>
                                         </div>
-                                    </div><span style="display: block;margin: 0px auto;text-align: center;font-size: 30px;">Grade : {{lesson_data.grade}}/20</span>
+                                    </div>
+                                    <span style="display: block;margin: 0px auto;text-align: center;font-size: 30px;">Grade : {{lesson_data.grade}}/20</span>
+                                    {% if lesson_data.status %}
+                                        <span style="display: block;margin: 0px auto;text-align: center;">{{lesson_data.status}}</span>
+                                    {% else %}
+                                        <span style="display: block;margin: 0px auto;text-align: center;">( Prueba Pendiente )</span>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

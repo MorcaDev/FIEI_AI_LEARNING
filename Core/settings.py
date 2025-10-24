@@ -143,7 +143,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'opt/render/media'
+MEDIA_ROOT = '/opt/render/media'
 
 
 # Default primary key field type
