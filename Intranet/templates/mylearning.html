@@ -51,7 +51,7 @@
                 {% if data %}
                     {% for subject in data %}
                         <div class="col">
-                            <div class="card"><img class="object-fit-cover card-img-top w-100 d-block" style="height: 200px;" src="http://127.0.0.1:8000/media/{{subject.course.image}}">
+                            <div class="card"><img class="object-fit-cover card-img-top w-100 d-block" style="height: 200px;" src="{{subject.course.image}}">
                                 <div class="card-body p-4">
                                     <p class="text-primary mb-0 card-text">Course</p>
                                     <h4 class="card-title">{{subject.course.name}}</h4>
