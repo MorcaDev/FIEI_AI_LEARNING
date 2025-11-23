@@ -51,7 +51,7 @@ class Subject(models.Model):
     school      = models.ForeignKey(School, on_delete=models.CASCADE)
     year        = models.PositiveSmallIntegerField(null=False, blank=False)
     ciclo       = models.PositiveSmallIntegerField(null=False, blank=False)
-    image       = models.ImageField(upload_to="Subject/",height_field=None,width_field=None,max_length=100, null=True )
+    image       = models.TextField(null=False,blank=False)
 
     def __str__(self):
         return self.name
@@ -126,7 +126,7 @@ class Content(models.Model):
 
     title    = models.CharField(null=False,max_length=200)
     format   = models.CharField(null=False,max_length=50)          # e.g. pdf, video…
-    location = models.FileField(upload_to="Content/", default="-")         # URL o path
+    location = models.TextField(null=False,blank=False)        # URL o path
 
     related_class = models.ForeignKey(Lesson, on_delete=models.CASCADE)
 
