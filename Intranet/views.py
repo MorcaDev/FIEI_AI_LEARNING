@@ -283,12 +283,14 @@ def lesson(request, code):
             # image="Actividad visual tipo flujo de decisión sobre emociones"
         )
 
+        print("ERROR 01")
         template = TemplateAssessment.objects.create(
             number_questions = 3,
             max_grade        = 20,
             type_questions   = TypeQuestion.objects.get(description="Respuesta Única"),
         )
 
+        print("ERROR 02")
         questions = [{"question":q["text"],"option":q["options"],"answer":q["answer"]} for q in data["questions"]]
         for q in data["questions"]:
             AdaptedQuestion.objects.create(
