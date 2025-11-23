@@ -59,7 +59,7 @@
                 {% for subject in subjects %}
                     <div class="col" style="width: 100%;">
                         <div>
-                            <img class="rounded img-fluid w-100 d-block fit-cover" style="height: 200px;" src="http://127.0.0.1:8000/media/{{subject.image}}">
+                            <img class="rounded img-fluid w-100 d-block fit-cover" style="height: 200px;" src="{{subject.image}}">
                             <div class="py-4">
                                 <h4 style="font-weight: bold;">{{subject.name}}</h4>
                                 <p>{{subject.description}}</p>
