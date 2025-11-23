@@ -89,15 +89,19 @@ def enroll_subject(request,code):
 def lesson(request, code):
 
     # lesson
+    print("ERROR01")
     current_lesson = Lesson.objects.get(pk=code)
 
     # content
+    print("ERROR02")
     current_content = Content.objects.get(related_class=current_lesson)
 
     # subject
+    print("ERROR03")
     current_subject = Subject.objects.get(pk=current_lesson.subject.pk)
 
     # student
+    print("ERROR04")
     current_student = Student.objects.get(user = request.user)
     student_career = current_student.career.name
     student_cycle = current_student.cycle
@@ -105,16 +109,19 @@ def lesson(request, code):
     learning_style = current_student.learning_style.name
 
     # adapted
+    print("ERROR05")
     current_summary = AdaptedSummary.objects.filter(related_class=current_lesson, student= current_student)
     current_recommendation = AdaptedRecommendation.objects.filter(related_class=current_lesson, student= current_student)
     current_activity = AdaptedActivity.objects.filter(related_class=current_lesson, student= current_student)
     current_test = AdaptedQuestion.objects.filter(student=current_student,related_class=current_lesson) 
 
     # Hobbies
+    print("ERROR06")
     list_hobbies = StudentHobby.objects.filter(student=current_student)
     list_hobbies = [Hobby.objects.get(pk=hobby.hobby.pk).name for hobby in list_hobbies]
 
     # create info with AI
+    print("ERROR07")
     existensing = [current_summary.exists(), current_recommendation.exists(),current_activity.exists(),current_test.exists()]
     if not all(existensing):
 
@@ -239,6 +246,7 @@ def lesson(request, code):
             """,
         }
         
+        print("ERROR 07-00-A")
         client = genai.Client(api_key=config("MYGEMINI_API"))
         response = client.models.generate_content(
             model="gemini-2.5-flash",
@@ -250,6 +258,7 @@ def lesson(request, code):
         data = response.text
         data = json.loads(data)
 
+        print("ERROR 07-00-B")
         summary = AdaptedSummary.objects.create(
             title=current_lesson.title,
             content=data["summary"],
@@ -261,6 +270,7 @@ def lesson(request, code):
             # image=data["media"][0]["description"]
         )
 
+        print("ERROR 07-00-C")
         recommendation = AdaptedRecommendation.objects.create(
             title=current_lesson.title,
             content=data["recommendation"],
@@ -272,6 +282,7 @@ def lesson(request, code):
             # image=data["media"][1]["description"]
         )
 
+        print("ERROR 07-00-D")
         activity = AdaptedActivity.objects.create(
             title=current_lesson.title,
             content=data["activity"],
@@ -283,14 +294,14 @@ def lesson(request, code):
             # image="Actividad visual tipo flujo de decisión sobre emociones"
         )
 
-        print("ERROR 01")
+        print("ERROR 07-01")
         template = TemplateAssessment.objects.create(
             number_questions = 3,
             max_grade        = 20,
             type_questions   = TypeQuestion.objects.get(description="Respuesta Única"),
         )
 
-        print("ERROR 02")
+        print("ERROR 07-02")
         questions = [{"question":q["text"],"option":q["options"],"answer":q["answer"]} for q in data["questions"]]
         for q in data["questions"]:
             AdaptedQuestion.objects.create(
